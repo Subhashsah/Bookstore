@@ -11,7 +11,6 @@ export default function Api() {
       try{
           
           const response = await axios.get("https://gutendex.com/books/?search=Sherlock")
-          console.log(response)
           setData(response.data.results); 
       }
       catch(err){

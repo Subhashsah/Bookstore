@@ -1,10 +1,8 @@
 import { useState } from 'react'
 
 import './App.css'
-import NavBar from './components/NavBar'
-import Banner from './components/Banner'
-import Footer from './components/Footer'
-import Api from './ utils/Api'
+import Router from './ utils/Router'
+
 
 
 function App() {
@@ -12,10 +10,7 @@ function App() {
 
   return (
     <>
-      <NavBar/>
-      <Banner/>
-      <Api/>
-      <Footer/>
+     <Router/>
      
     </>
   )

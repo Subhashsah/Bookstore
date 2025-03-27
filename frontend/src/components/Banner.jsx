@@ -1,10 +1,10 @@
 import React from 'react'
 import { MdEmail } from "react-icons/md";
-import book from "../../public/book3.avif"
+
 export default function Banner() {
   return (
     <>
-    <div className='max-w-screen container m-auto md:px-20 px-4 mt-48 md:mt-48 flex flex-col md:flex-row gap-12 my-10'>
+    <div className='max-w-screen container m-auto md:px-20 px-4 mt-48 md:mt-48 flex flex-col  md:flex-row gap-12 my-10'>
     <div className='md:w-1/2 order-2 md:order-1'>
     <div className="flex flex-col gap-6">
         <h1 className="md:text-4xl md:font-bold text-2xl font-semibold ">Hyy, welcome here to learn <span className="text-pink-400">something new everyday!!!</span></h1>
@@ -20,7 +20,7 @@ export default function Banner() {
    
     </div>
     <div className='md:w-1/2 order-1 md:order-2 '>
-    <img src={book} alt="" />
+    <img src="/book3.avif" alt="" />
     
     </div>
    
