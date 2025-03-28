@@ -91,7 +91,7 @@ export default function NavBar() {
                             >
                                 {theme === "dark" ? <MdDarkMode size={25} /> : <MdOutlineLightMode size={25} />}
                             </div>
-                            <button onClick={()=>setLogin(!login)} className="bg-green-500 py-2 px-3 text-lx font-bold rounded-md">{login? "close":"login"}</button>
+                            <button onClick={()=>setLogin(true)} className="bg-green-500 py-2 px-3 text-lx font-bold rounded-md">login</button>
                             
                         </div>
                         

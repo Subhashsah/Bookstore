@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {useForm} from "react-hook-form"
+import toast from 'react-hot-toast';
+import { IoMdClose } from "react-icons/io";
 export default function Signup() {
+  const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -17,18 +20,25 @@ export default function Signup() {
             password:data.passwd
         }
         try {
-            await axios.post("http://localhost:4000/api/v1/book/registerUser",userInfo)
-            alert("you have register successfully")
+            const res = await axios.post("http://localhost:4000/api/v1/book/registerUser",userInfo)
             reset()
+            console.log(res.data.message,res.data.data)
+            localStorage.setItem("user",JSON.stringify(res.data.data))
+            toast.success(res.data.message)
+
+           
         } catch (error) {
-            alert("something went wrong while registering")
-            console.log(error)
+            toast.error(error.response.data.message)
+            console.log(error.response.data.message)
         }
       }
   return (
     <>
-        <div className="w-1/3 shadow-2xl m-auto px-12 py-8 rounded-xl mt-42 h-full">
+        <div className=" relative w-1/3 shadow-2xl m-auto px-12 py-8 rounded-xl mt-42 h-full">
+        <IoMdClose onClick={()=>navigate('/')} size={30} className='absolute top-2 right-0.5'/>
         <form onSubmit={handleSubmit(onSubmit)} action="">
+
+        
         <div className="flex flex-col items-center justify-center gap-3 ">
             <h1 className="text-xl font-bold">Signup</h1>
             <div className="flex flex-col gap-3 ">

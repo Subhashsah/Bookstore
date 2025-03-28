@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { Toaster } from 'react-hot-toast';
 import './App.css'
 import Router from './ utils/Router'
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
      <Router/>
-     
+     <Toaster/>
     </>
   )
 }

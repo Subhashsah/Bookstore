@@ -28,6 +28,29 @@ const registerUser =asyncHandler(async(req,res)=>{
     )
    
 })
+
+const login =asyncHandler(async(req,res)=>{
+    const {email,password}=req.body;
+
+    const isUserExist = await User.findOne({email})
+    if(!isUserExist){
+        throw new ApiError(400,"Invalid credentials")
+    }
+    if(isUserExist.password !== password){
+       throw new ApiError(400,"you have entered incorrect passsword")
+    }
+    const user = await User.findById(isUserExist._id).select("-password")
+    if(!user){
+        throw new ApiError(400,"user not found")
+    }
+    res
+    .status(200)
+    .json(
+        new ApiResponse(200,user,"user login successfull")
+    )
+})
+
 export{
-    registerUser
+    registerUser,
+    login
 }
