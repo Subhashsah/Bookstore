@@ -9,8 +9,11 @@ export default function Books() {
     useEffect(()=>{
     const api = async()=>{
         try{
-          const response = await axios.get("https://gutendex.com/books/?search=Sherlock")
-          setData(response.data.results); 
+          const response = await axios.get("http://localhost:4000/api/v1/book/getBook")
+
+        
+          console.log(response.data.data)
+          setData(response.data.data); 
         }
         catch(err){
             console.log(err)
@@ -29,9 +32,24 @@ export default function Books() {
         </div>
         <div className="grid md:grid-cols-4 grid-cols-1 gap-14 my-8">
           {
-            data.map((item)=>(
-             <Card key={item.id} items={item}/>
-            ))
+           data.map((item)=>(
+            <div className="flexf flex-col items-center justify-center  "key={item._id}>
+              <div className="flex flex-col items-center hover:scale-105 duration-200">
+              <img className="w-full h-[450px] rounded-t-2xl shadow-2xl" src={item.image} alt="" />
+              </div>
+              <div className='bg-slate-200 py-3 pb-4 rounded-b-2xl'>
+              <div className="flex flex-col items-center gap-2 ">
+                <h1 className="text-xl font-bold">{item.title}</h1>
+                 <p className="text-lg font-semibold">{item.author}</p>
+              </div>
+              <div className="flex flex-row items-center justify-center space-x-40 mt-3" >
+              <p>{item.category}</p>
+              <p>${item.price}</p>  
+              </div>
+              </div>
+              
+            </div>
+           ))
           }
         </div>
     </div>

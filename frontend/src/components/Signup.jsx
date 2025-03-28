@@ -1,16 +1,29 @@
 import React from 'react'
+import axios from 'axios'
 import { NavLink } from 'react-router-dom'
 import {useForm} from "react-hook-form"
 export default function Signup() {
     const {
         register,
         handleSubmit,
-        watch,
+        reset,
         formState: { errors },
       } = useForm();
 
-      const onSubmit=(data)=>{
-        console.log(data)
+      const onSubmit=async(data)=>{
+        const userInfo ={
+            fullName:data.name,
+            email:data.email,
+            password:data.passwd
+        }
+        try {
+            await axios.post("http://localhost:4000/api/v1/book/registerUser",userInfo)
+            alert("you have register successfully")
+            reset()
+        } catch (error) {
+            alert("something went wrong while registering")
+            console.log(error)
+        }
       }
   return (
     <>
