@@ -5,7 +5,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { MdOutlineLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import Login from './Login';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import LogOutButton from './LogOutButton';
+
 export default function NavBar() {
+    const user = useContext(AuthContext)
     const[login,setLogin] =useState(false)
     const [menu, setMenu] = useState(false)
     const [sticky, setSticky] = useState(false)
@@ -91,7 +96,10 @@ export default function NavBar() {
                             >
                                 {theme === "dark" ? <MdDarkMode size={25} /> : <MdOutlineLightMode size={25} />}
                             </div>
-                            <button onClick={()=>setLogin(true)} className="bg-green-500 py-2 px-3 text-lx font-bold rounded-md">login</button>
+                            {
+                               user.authUser?<LogOutButton/>:   <button onClick={()=>setLogin(true)} className="bg-green-500 py-2 px-3 text-lx font-bold rounded-md">login</button>
+                            }
+                          
                             
                         </div>
                         

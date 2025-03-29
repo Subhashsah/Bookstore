@@ -6,7 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import toast from 'react-hot-toast';
 export default function Login() {
   const navigate = useNavigate()
-
+  const [login,setLogin]=useState(false);
     const {
         register,
         handleSubmit,
@@ -19,12 +19,22 @@ export default function Login() {
       }
         try {
             const res = await axios.post("http://localhost:4000/api/v1/book/login",userInfo)
+            console.log(res.data.data)
             console.log(res.data.message)
+            localStorage.setItem("user",JSON.stringify(res.data.data))
             toast.success(res.data.message)
+            setTimeout(()=>{
+              window.location.reload();
+            },2000)
+            
+            
+
         } catch (error) {
             console.log(error.response.data.message)
             toast.error(error.response.data.message)
-
+            setTimeout(()=>{
+              window.location.reload();
+            },2000)
             
         }
       }

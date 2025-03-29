@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import {useForm} from "react-hook-form"
 import toast from 'react-hot-toast';
 import { IoMdClose } from "react-icons/io";
@@ -25,6 +25,7 @@ export default function Signup() {
             console.log(res.data.message,res.data.data)
             localStorage.setItem("user",JSON.stringify(res.data.data))
             toast.success(res.data.message)
+            navigate('/')
 
            
         } catch (error) {
